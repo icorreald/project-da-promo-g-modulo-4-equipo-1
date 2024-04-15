@@ -4,7 +4,7 @@ import numpy as np
 def drops(df):
     df.drop_duplicates(inplace=True)
 
-    df.drop(columns=['company', "market_segment", '0'], inplace=True)
+    df.drop(columns=['company', "market_segment", '0','reserved_room_type'], inplace=True)
 
     indices = df[df['hotel'].isna()].index
     df.drop(indices, axis=0, inplace=True)

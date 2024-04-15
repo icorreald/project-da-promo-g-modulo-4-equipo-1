@@ -22,3 +22,5 @@ df.shape
 df.to_csv("df_final_prueba.csv")
 
 df.head()
+
+sp.
