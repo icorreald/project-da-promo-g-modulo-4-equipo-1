@@ -91,6 +91,14 @@ def limpiar_valores(df):
     Returns:
         None: La función modifica el DataFrame original inplace.
     '''
+    # eliminar duplicados
+    df.drop_duplicates(inplace=True)
+
+    #Quitamos Nan columna "hotel"
+    df['hotel'].fillna('UNK', inplace=True)
+    indices = df[df['hotel']=='UNK'].index
+    df.drop(indices, axis=0, inplace=True)
+
     # Iterar sobre cada columna del DataFrame
     integers= ["required_car_parking_spaces", "days_in_waiting_list", "total_of_special_requests"]
     for columna in integers:
@@ -118,15 +126,10 @@ def limpiar_valores(df):
 
     df.rename(columns={'adr': 'average_daily_rate'}, inplace=True)
 
-    df.drop_duplicates(inplace=True)
-
     # Convertir 'reservation_status_date' a tipo datetime, manejar fechas inválidas
     df['reservation_status_date'] = pd.to_datetime(df['reservation_status_date'], errors='coerce').dt.date
 
     # Reemplazar fechas inválidas con NaN
     df['reservation_status_date'] = df['reservation_status_date'].replace(pd.NaT, np.nan)
 
-    #Quitamos Nan columna "hotel"
-    df['hotel'].fillna('UNK', inplace=True)
-    indices = df[df['hotel']=='UNK'].index
-    df.drop(indices, axis=0, inplace=True)
+    

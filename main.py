@@ -1,8 +1,11 @@
+# %%
 # Importaciones 
 from src import limpieza as sp
+import pandas as pd
+import numpy as np
 
 #Abrimos CSV:
-df = sp.leer_cvs("files", "finanzas-hotel-bookings.csv")
+df = pd.read_csv('files/finanzas-hotel-bookings.csv', index_col=0)
 
 #Funcion para explorar el dataframe
 sp.exploracion(df)
@@ -16,6 +19,6 @@ sp.limpiar_valores(df)
 df.shape
 
 #guardar dataframe final 
-df.to_csv("df_final.csv")
+df.to_csv("df_final_prueba.csv")
 
 df.head()
