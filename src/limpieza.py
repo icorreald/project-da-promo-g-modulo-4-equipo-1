@@ -125,3 +125,8 @@ def limpiar_valores(df):
 
     # Reemplazar fechas inválidas con NaN
     df['reservation_status_date'] = df['reservation_status_date'].replace(pd.NaT, np.nan)
+
+    #Quitamos Nan columna "hotel"
+    df['hotel'].fillna('UNK', inplace=True)
+    indices = df[df['hotel']=='UNK'].index
+    df.drop(indices, axis=0, inplace=True)
