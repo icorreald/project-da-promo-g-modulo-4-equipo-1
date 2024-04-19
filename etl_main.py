@@ -15,6 +15,6 @@ sl.nuevas_columnas(df)
 
 display(df)
 
-df.to_csv("df_definitivo.csv")
+df.to_csv("df_definitivo.csv", index=False)
 
 # %%
