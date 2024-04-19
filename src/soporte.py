@@ -3,7 +3,7 @@ import numpy as np
 
 def lead_time(valor):
     if valor > 365:
-        return '> 1 año'
+        return '> 12 meses'
     elif valor > 330:
         return '> 11 meses'
     elif valor > 300:
@@ -38,6 +38,8 @@ def drops(df):
     df.drop(indices, axis=0, inplace=True)
 
     df['lead_time_months'] = df['lead_time'].apply(lead_time)
+
+    df.reset_index()
 
     return df
 
