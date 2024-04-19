@@ -1,6 +1,34 @@
 import pandas as pd
 import numpy as np
 
+def lead_time(valor):
+    if valor > 365:
+        return '> 1 año'
+    elif valor > 330:
+        return '> 11 meses'
+    elif valor > 300:
+        return '> 10 meses'
+    elif valor > 270:
+        return '> 9 meses'
+    elif valor > 240:
+        return '> 8 meses'
+    elif valor > 210:
+        return '> 7 meses'
+    elif valor > 180:
+        return '> 6 meses'
+    elif valor > 150:
+        return '> 5 meses'
+    elif valor > 120:
+        return '> 4 meses'
+    elif valor > 90:
+        return '> 3 meses'
+    elif valor > 60:
+        return '> 2 meses'
+    elif valor > 30:
+        return '> 1 mes'
+    else:
+        return '< 1 mes'
+    
 def drops(df):
     df.drop_duplicates(inplace=True)
 
@@ -8,6 +36,8 @@ def drops(df):
 
     indices = df[df['hotel'].isna()].index
     df.drop(indices, axis=0, inplace=True)
+
+    df['lead_time_months'] = df['lead_time'].apply(lead_time)
 
     return df
 
@@ -63,5 +93,7 @@ def homog_tablas(lista_df):
     for df in lista_df:
         for columna in df.columns:
             df[columna] = df[columna].apply(unify)
+
+
 
 lista_int = ["required_car_parking_spaces", "days_in_waiting_list", "total_of_special_requests"]
