@@ -28,6 +28,7 @@ def lead_time(valor):
         return '> 1 mes'
     else:
         return '< 1 mes'
+
     
 def drops(df):
     df.drop_duplicates(inplace=True)
@@ -36,8 +37,6 @@ def drops(df):
 
     indices = df[df['hotel'].isna()].index
     df.drop(indices, axis=0, inplace=True)
-
-    df['lead_time_months'] = df['lead_time'].apply(lead_time)
 
     df.reset_index()
 
@@ -62,6 +61,23 @@ def replaces(df):
     # cambiamos nombre a adr
     df.rename(columns={'adr': 'average daily rate'}, inplace=True)
 
+    df['lead_time_months'] = df['lead_time'].apply(lead_time)
+    df['ltm'] = df['lead_time_months']
+    df['ltm']=df['ltm'].map({'< 1 mes': 0,
+               '> 1 mes': 1,
+               '> 2 meses': 2,
+               '> 3 meses': 3,
+               '> 4 meses': 4,
+               '> 5 meses': 5,
+               '> 6 meses': 6,
+               '> 7 meses': 7,
+               '> 8 meses': 8,
+               '> 9 meses': 9,
+               '> 10 meses': 10,
+               '> 11 meses': 11,
+               '> 12 meses': 12
+              })
+   
     return df
 
 
