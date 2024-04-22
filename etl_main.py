@@ -12,9 +12,12 @@ df = sl.drops(df)
 df = sl.replaces(df)
 #%%
 sl.nuevas_columnas(df)
-
+df= sl.convert_to_datetime(df)
+df= sl.clean(df)
 display(df)
 
 df.to_csv("df_definitivo.csv", index=False)
+
+
 
 # %%

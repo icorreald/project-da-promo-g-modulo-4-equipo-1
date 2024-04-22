@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from datetime import date
 
 def lead_time(valor):
     if valor > 365:
@@ -113,5 +114,29 @@ def homog_tablas(lista_df):
             df[columna] = df[columna].apply(unify)
 
 
+def convert_to_datetime(df):
+    
+    # Convertir la columna especificada a tipo datetime y manejar fechas inválidas
+    df['reservation_status_date'] = pd.to_datetime(df['reservation_status_date'], errors='coerce').dt.date
+    
+    return df
 
-lista_int = ["required_car_parking_spaces", "days_in_waiting_list", "total_of_special_requests"]
+
+def clean(df):
+    """
+    Elimina las filas donde 'average daily rate' es menor o igual a cero.
+    
+    Parámetros:
+    df (DataFrame): DataFrame de entrada
+    
+    Devuelve:
+    DataFrame: DataFrame limpio sin las filas donde 'average daily rate' es menor o igual a cero.
+    """
+    # Seleccionar las filas donde 'average daily rate' es menor o igual a cero y obtener sus índices
+    rows_to_drop = df[df["average daily rate"] <= 0].index
+
+    # Eliminar las filas con los índices seleccionados
+    df_cleaned = df.drop(rows_to_drop)
+
+    return df_cleaned
+
