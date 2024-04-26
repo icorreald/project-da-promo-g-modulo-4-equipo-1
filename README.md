@@ -14,7 +14,7 @@ El análisis se basa en una variedad de datos relacionados con las reservas de h
 
 Metodología
 
-El análisis se llevará a cabo utilizando técnicas de análisis de datos y  estadístico para identificar patrones y tendencias en los datos de cancelaciones. Se utilizarán herramientas como Python y bibliotecas como Pandas, NumPy y Matplotlib para el procesamiento de datos y la visualización de resultados. 
+El análisis se llevará a cabo utilizando técnicas de análisis de datos y  estadístico para identificar patrones y tendencias en los datos de cancelaciones. Se utilizarán herramientas como Python y bibliotecas como Pandas, NumPy y Matplotlib para el procesamiento de datos y la visualización inicial de resultados; para la entrega de resultados y visualizacion final hemos construido los dashboards en Power Bi. 
 
 Resultados Esperados
 
